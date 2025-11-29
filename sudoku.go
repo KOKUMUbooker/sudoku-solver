@@ -6,7 +6,10 @@ func main() {
 // Returns the grid as a slice of []runes with an individual []rune's index
 // in the [][]rune slice represents it's row and an individual rune in []rune
 // represents it's value in the grid
-func convStrToRuneGrid(grid []string) [][]rune {}
+func ConvStrToRuneGrid(grid []string) [][]rune {
+	//
+	return [][]rune{} // TODO: Only for use in testing - CHANGE LATER
+}
 
 // Solves sudoku by recursion & backtracking
 func SolveSudoku(grid [][]rune) bool {
