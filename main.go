@@ -20,7 +20,7 @@ func SolveSudoku(grid [][]rune) bool {
 
 	for num := '1'; num <= '9'; num++ {
 		if NoConflicts(grid, row, col, num) {
-			grid[row][col] = num // Try the choide since it doesn't violate sudoku rules
+			grid[row][col] = num // Try the choic since it doesn't violate sudoku rules
 			// Since it doesn't violate soduku rules be optimistic that starting from the filled position
 			// onwards will hopefully yield a solved soduku
 			if SolveSudoku(grid) {
