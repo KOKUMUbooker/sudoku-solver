@@ -5,8 +5,24 @@ package main
 // If it find a slot containing '.', it assigns row & col to those values & returns true
 // else it returns false
 func FindUnassignedLocation(grid [][]rune, row *int, col *int) bool {
-	//
-	return true // TODO: Only for use in testing - CHANGE LATER
+	dotFound := false
+
+	for rowI, rowSlice := range grid {
+		for colI, r := range rowSlice {
+			if r == '.' {
+				dotFound = true
+				*row = rowI
+				*col = colI
+				break
+			}
+		}
+
+		if dotFound == true {
+			break
+		}
+	}
+
+	return dotFound
 }
 
 // Checks whether the num argument passed against sudoku rules
