@@ -31,7 +31,23 @@ func FindUnassignedLocation(grid [][]rune, row *int, col *int) bool {
 func NoConflicts(grid [][]rune, row int, col int, num rune) bool {
 	// Check if placement is valid along the column axis
 	// Check if placement is valid along the row axis
+
 	// Check if placement is valid along the box
+	if !isUniqueInBox(grid, row, col, num) {
+		return false
+	}
 
 	return true // TODO: Only for use in testing - CHANGE LATER
+}
+
+func isUniqueInBox(grid [][]rune, row int, col int, num rune) bool {
+	isUnique := true
+
+	if col >= 0 && col <= 2 { // Is in 1st 3 cols
+		// for i := 0; i
+	} else if col >= 3 && col <= 5 { // Is in 2nd 3 cols
+	} else if col >= 6 && col <= 8 { // Is in last 3 cols
+	}
+
+	return isUnique
 }
