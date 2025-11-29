@@ -17,7 +17,7 @@ func FindUnassignedLocation(grid [][]rune, row *int, col *int) bool {
 			}
 		}
 
-		if dotFound == true {
+		if dotFound {
 			break
 		}
 	}
@@ -37,17 +37,21 @@ func NoConflicts(grid [][]rune, row int, col int, num rune) bool {
 		return false
 	}
 
-	return true // TODO: Only for use in testing - CHANGE LATER
+	return true
 }
 
 func isUniqueInBox(grid [][]rune, row int, col int, num rune) bool {
-	isUnique := true
+    boxRowStart := (row / 3) * 3
+    boxColStart := (col / 3) * 3
 
-	if col >= 0 && col <= 2 { // Is in 1st 3 cols
-		// for i := 0; i
-	} else if col >= 3 && col <= 5 { // Is in 2nd 3 cols
-	} else if col >= 6 && col <= 8 { // Is in last 3 cols
-	}
+    // Loop through the 3×3 box
+    for r := boxRowStart; r < boxRowStart+3; r++ {
+        for c := boxColStart; c < boxColStart+3; c++ {
+            if grid[r][c] == num {
+                return false
+            }
+        }
+    }
 
-	return isUnique
+    return true
 }
