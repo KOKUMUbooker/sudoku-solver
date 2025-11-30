@@ -33,25 +33,17 @@ func NoConflicts(grid [][]rune, row int, col int, num rune) bool {
 	// Check if placement is valid along the row axis
 
 	// Check if placement is valid along the box
-	if !isUniqueInBox(grid, row, col, num) {
-		return false
+	boxRowStart := (row / 3) * 3
+	boxColStart := (col / 3) * 3
+
+	// Loop through the 3×3 box
+	for r := boxRowStart; r < boxRowStart+3; r++ {
+		for c := boxColStart; c < boxColStart+3; c++ {
+			if grid[r][c] == num {
+				return false
+			}
+		}
 	}
 
 	return true
-}
-
-func isUniqueInBox(grid [][]rune, row int, col int, num rune) bool {
-    boxRowStart := (row / 3) * 3
-    boxColStart := (col / 3) * 3
-
-    // Loop through the 3×3 box
-    for r := boxRowStart; r < boxRowStart+3; r++ {
-        for c := boxColStart; c < boxColStart+3; c++ {
-            if grid[r][c] == num {
-                return false
-            }
-        }
-    }
-
-    return true
 }
