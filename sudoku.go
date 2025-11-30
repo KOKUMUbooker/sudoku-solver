@@ -1,6 +1,22 @@
 package main
 
+import (
+	"fmt"
+	"os"
+)
+
 func main() {
+	input := os.Args[1:] // evrything after program name
+
+	grid := ConvStrToRuneGrid(input)
+	if grid == nil {
+		fmt.Println("Error") // invalid input
+		return
+	}
+
+	for _, row := range grid { // TODO: Only for use in testing - DELETE LATER
+		fmt.Println(string(row))
+	}
 }
 
 // Returns the grid as a slice of []runes with an individual []rune's index
@@ -21,7 +37,7 @@ func ConvStrToRuneGrid(grid []string) [][]rune {
 
 	return gridRune // if everything is valid, return the full 9x9 grid
 
-	// return [][]rune{} // TODO: Only for use in testing - CHANGE LATER
+	// TODO: Only for use in testing - CHANGE LATER
 }
 
 // Solves sudoku by recursion & backtracking
