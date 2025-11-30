@@ -7,8 +7,21 @@ func main() {
 // in the [][]rune slice represents it's row and an individual rune in []rune
 // represents it's value in the grid
 func ConvStrToRuneGrid(grid []string) [][]rune {
-	//
-	return [][]rune{} // TODO: Only for use in testing - CHANGE LATER
+	if len(grid) != 9 {
+		return nil
+	}
+
+	gridRune := make([][]rune, 9) // allocate 2d slice to hold the 9 rows
+	for i, row := range grid {
+		if len(row) != 9 { // each roe must contain 9 characters
+			return nil // otherwise not valid
+		}
+		gridRune[i] = []rune(row) // convert string to rune slice
+	}
+
+	return gridRune // if everything is valid, return the full 9x9 grid
+
+	// return [][]rune{} // TODO: Only for use in testing - CHANGE LATER
 }
 
 // Solves sudoku by recursion & backtracking
