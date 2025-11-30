@@ -13,7 +13,11 @@ func FindUnassignedLocation(grid [][]rune, row *int, col *int) bool {
 // (num to be unique per row, column & also per box)
 // If num is valid return true otherwise return false
 func NoConflicts(grid [][]rune, row int, col int, num rune) bool {
-	// Check if placement is valid along the column axis
+	for r := 0; r < 9; r++ {
+		if grid[r][col] == num { // same number appears in the column
+			return false
+		}
+	}
 	// Check if placement is valid along the row axis
 	// Check if placement is valid along the box
 
