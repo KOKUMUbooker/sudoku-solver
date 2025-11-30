@@ -36,8 +36,6 @@ func ConvStrToRuneGrid(grid []string) [][]rune {
 	}
 
 	return gridRune // if everything is valid, return the full 9x9 grid
-
-	// TODO: Only for use in testing - CHANGE LATER
 }
 
 // Solves sudoku by recursion & backtracking
