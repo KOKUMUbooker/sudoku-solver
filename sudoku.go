@@ -16,11 +16,14 @@ func main() {
 	// Ensure default grid is valid before solving
 	for rowI, rowRunes := range grid {
 		for colI, r := range rowRunes {
-			if r != '.' {
-				if !NoConflicts(grid, rowI, colI, r) {
-					fmt.Println("Error")
-					return
-				}
+			if r == '.' {
+				continue
+			}
+			num := grid[rowI][colI]
+			count := CheckGridIsValidBeforeSolving(grid, rowI, colI, num)
+			if count > 0 {
+				fmt.Println("Error")
+				return
 			}
 		}
 	}
@@ -97,6 +100,34 @@ func NoConflicts(grid [][]rune, row int, col int, num rune) bool {
 	}
 
 	return true
+}
+
+func CheckGridIsValidBeforeSolving(grid [][]rune, row int, col int, num rune) int {
+	count := 0
+	for r := 0; r < 9; r++ {
+		if grid[r][col] == num && r != row {
+			count++
+		}
+	}
+
+	for k := 0; k < 9; k++ {
+		if grid[row][k] == num && k != col {
+			count++
+		}
+	}
+
+	boxRowStart := (row / 3) * 3
+	boxColStart := (col / 3) * 3
+
+	for r := boxRowStart; r < boxRowStart+3; r++ {
+		for c := boxColStart; c < boxColStart+3; c++ {
+			if grid[r][c] == num && r != row && c != col {
+				count++
+			}
+		}
+	}
+
+	return count
 }
 
 func SolveSudoku(grid [][]rune) bool {
