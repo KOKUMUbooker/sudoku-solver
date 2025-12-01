@@ -64,25 +64,21 @@ func FindUnassignedLocation(grid [][]rune, row *int, col *int) bool {
 }
 
 func NoConflicts(grid [][]rune, row int, col int, num rune) bool {
-	// Check if placement is valid along the column axis
 	for r := 0; r < 9; r++ {
 		if grid[r][col] == num {
 			return false
 		}
 	}
 
-	// Check if placement is valid along the row axis
 	for k := 0; k < 9; k++ {
 		if grid[row][k] == num {
 			return false
 		}
 	}
 
-	// Check if placement is valid along the box
 	boxRowStart := (row / 3) * 3
 	boxColStart := (col / 3) * 3
 
-	// Loop through the 3×3 box
 	for r := boxRowStart; r < boxRowStart+3; r++ {
 		for c := boxColStart; c < boxColStart+3; c++ {
 			if grid[r][c] == num {
@@ -97,7 +93,6 @@ func NoConflicts(grid [][]rune, row int, col int, num rune) bool {
 func SolveSudoku(grid [][]rune) bool {
 	var row, col int
 
-	// Correct base condition
 	openSlotFound := FindUnassignedLocation(grid, &row, &col)
 	if openSlotFound == false {
 		return true
@@ -109,7 +104,7 @@ func SolveSudoku(grid [][]rune) bool {
 			if SolveSudoku(grid) {
 				return true
 			}
-			grid[row][col] = '.' // backtrack
+			grid[row][col] = '.'
 		}
 	}
 
