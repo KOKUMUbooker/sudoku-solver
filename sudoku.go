@@ -13,7 +13,11 @@ func main() {
 		return
 	}
 
-	SolveSudoku(grid)
+	sudokuSolved := SolveSudoku(grid)
+	if sudokuSolved == false {
+		fmt.Println("Error")
+		return
+	}
 
 	for _, row := range grid {
 		for i, r := range row {
