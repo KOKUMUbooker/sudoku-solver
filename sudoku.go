@@ -16,9 +16,11 @@ func main() {
 	// Ensure default grid is valid before solving
 	for rowI, rowRunes := range grid {
 		for colI, r := range rowRunes {
-			if !NoConflicts(grid, rowI, colI, r) {
-				fmt.Println("Error")
-				return
+			if r != '.' {
+				if !NoConflicts(grid, rowI, colI, r) {
+					fmt.Println("Error")
+					return
+				}
 			}
 		}
 	}
@@ -57,24 +59,17 @@ func ConvStrToRuneGrid(grid []string) [][]rune {
 }
 
 func FindUnassignedLocation(grid [][]rune, row *int, col *int) bool {
-	dotFound := false
-
 	for rowI, rowSlice := range grid {
 		for colI, r := range rowSlice {
 			if r == '.' {
-				dotFound = true
 				*row = rowI
 				*col = colI
-				break
+				return true
 			}
-		}
-
-		if dotFound {
-			break
 		}
 	}
 
-	return dotFound
+	return false
 }
 
 func NoConflicts(grid [][]rune, row int, col int, num rune) bool {
