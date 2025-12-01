@@ -16,7 +16,13 @@ func main() {
 	SolveSudoku(grid)
 
 	for _, row := range grid {
-		fmt.Println(string(row))
+		for i, r := range row {
+			if i > 0 {
+				fmt.Print(" ")
+			}
+			fmt.Print(string(r))
+		}
+		fmt.Println()
 	}
 }
 
