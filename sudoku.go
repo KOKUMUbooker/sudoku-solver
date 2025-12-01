@@ -13,6 +13,16 @@ func main() {
 		return
 	}
 
+	// Ensure default grid is valid before solving
+	for rowI, rowRunes := range grid {
+		for colI, r := range rowRunes {
+			if !NoConflicts(grid, rowI, colI, r) {
+				fmt.Println("Error")
+				return
+			}
+		}
+	}
+
 	sudokuSolved := SolveSudoku(grid)
 	if sudokuSolved == false {
 		fmt.Println("Error")
