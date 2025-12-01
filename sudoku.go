@@ -91,9 +91,9 @@ func NoConflicts(grid [][]rune, row int, col int, num rune) bool {
 func SolveSudoku(grid [][]rune) bool {
 	var row, col int
 
-	// Base condition
+	// Correct base condition
 	openSlotFound := FindUnassignedLocation(grid, &row, &col)
-	if openSlotFound {
+	if openSlotFound == false {
 		return true
 	}
 
@@ -103,7 +103,7 @@ func SolveSudoku(grid [][]rune) bool {
 			if SolveSudoku(grid) {
 				return true
 			}
-			grid[row][col] = '.'
+			grid[row][col] = '.' // backtrack
 		}
 	}
 
